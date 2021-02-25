@@ -71,6 +71,9 @@ a:hover{
 
 h1{
     text-align: center;
+     color: brown;
+    font-size: 25px;
+    font-family: cursive;
 }
 
 table{
@@ -78,10 +81,10 @@ table{
     margin: 0 auto;
 }
 
-td{
+th{
 font-size: larger;
 font-family: sans-serif;
 border: 2px solid blue;
 border-radius: 5px;
-padding: 5px 5px;
+padding: 5px 10px;
 }
