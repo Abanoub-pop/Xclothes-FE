@@ -29,9 +29,23 @@
         </nav>
     </header>
 
-    <h1>Orders page</h1>
+    <form>
+        <div class="orders">
+            <label>ID:</label><input type="text" name="id" id="id">
+            <label>Order date:</label><input type="text" name="orderDate" id="orderDate">
+            <label>Cloth:</label><input type="text" name="cloth" id="cloth">
+            <label>Quantity:</label><input type="text" name="quantity" id="quantity">
+            <label>Customer code:</label><input type="text" name="customerCode" id="customerCode">
+            <input type="button" value="Create"> <!--onclick="addOrder();"-->
+        </div>
 
-    <table>
+        <div>
+        </div>
+    </form>
+
+    <h1>Orders data</h1>
+
+    <table id="ordersTable">
 
         <thead>
             <tr>
@@ -42,8 +56,9 @@
                 <th>Customer code</th>
             </tr>
         </thead>
-        <!---
-        <tbody>
+
+        <tbody id="ordersTableBody">
+            <!---
             <tr>
                 <td>hello</td>
                 <td>hello</td>
@@ -51,8 +66,8 @@
                 <td>hello</td>
                 <td>hello</td>
             </tr>
+        -->
         </tbody>
--->
     </table>
 
     <script src="JS/main.js"></script>
