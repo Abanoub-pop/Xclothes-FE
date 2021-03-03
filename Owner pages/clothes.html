@@ -1,65 +1,229 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <title>Cloth page</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="CSS/template.css" rel="stylesheet" type="text/css" />
+       
+    </head>
+    <body>
+        <header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="CSS/template.css" rel="stylesheet" type="text/css" />
+            <logo id="logo">
+                <img src="img/logo.jpg" alt="logo">
+                <span id="ist">X</span>
+                <span id="iist">cloth.com</span>
+            </logo>
+    
+    
+            <nav>
+                <ul>
+                    <li><a href="manufacturers.html">Manufacturers</a></li>
+                    <li><a href="clothes.html">Clothes</a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <h1>Clothes data</h1>
+    
+        <div class="container">
+            <div class="tab tab-1">
+                ID <input type="number" name="id" id="id">
+                Code <input type="text" name="code" id="code">
+                Image filename <input type="text" name="imageFilename" id="imageFilename">
+				Manufacturer <input type="text" name="manufacturer" id="manufacturer">
+				Short description <input type="text" name="shortDescription" id="shortDescription">
+				Full description <input type="text" name="fullDescription" id="fullDescription">
+				Promo <input type="text" name="promo" id="promo">
+                
+                <button onclick="addHtmlTableRow();">Add</button>
+                <button onclick="editHtmlTbleSelectedRow();">Edit</button>
+                <button onclick="removeSelectedRow();">Remove</button>
+            </div>
+            <div class="tab tab-2">
+                <table id="table" border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Code</th>
+                        <th>Image filename</th>
+                        <th>Manufacturer</th>
+                        <th>Short description</th>
+                        <th>Full description</th>
+                        <th>Promo</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>A1</td>
+                        <td>B1</td>
+                        <td>C1</td>
+                        <td>D1</td>
+                        <td>E1</td>
+                        <td>F1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>A2</td>
+                        <td>B2</td>
+                        <td>C2</td>
+                        <td>D2</td>
+                        <td>E2</td>
+                        <td>F2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>A3</td>
+                        <td>B3</td>
+                        <td>C3</td>
+                        <td>D3</td>
+                        <td>E3</td>
+                        <td>F3</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <script>
+            
+            var rIndex,
+                table = document.getElementById("table");
+                
+                // check the empty input
+                function checkEmptyInput()
+                {
+                    var isEmpty = false,
+                    id = document.getElementById("id").value;
+                    code = document.getElementById("code").value;
+                    imageFilename = document.getElementById("imageFilename").value;
+					manufacturer = document.getElementById("manufacturer").value;
+					shortDescription = document.getElementById("shortDescription").value;
+					fullDescription = document.getElementById("fullDescription").value;
+					promo = document.getElementById("promo").value;
+                    
+                    if(id === ""){
+                        alert("ID Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(code === ""){
+                    alert("Name Connot Be Empty");
+                    isEmpty = true;
+                }
+				else if(imageFilename === ""){
+                    alert("Image filename Connot Be Empty");
+                    isEmpty = true;
+                }
+				else if(manufacturer === ""){
+                    alert("Manufacturer Connot Be Empty");
+                    isEmpty = true;
+                }
+				else if(shortDescription === ""){
+                    alert("Short description Connot Be Empty");
+                    isEmpty = true;
+                }
+				else if(fullDescription === ""){
+                    alert("Full description Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(promo === ""){
+                    alert("Promo Connot Be Empty");
+                    isEmpty = true;
+                }
+                return isEmpty;
+            }
+            
+            // add Row
+            function addHtmlTableRow()
+            {
+                // get the table by id
+                // create a new row and cells
+                // get value from input text
+                // set the values into row cell's
+                if(!checkEmptyInput()){
+                var newRow = table.insertRow(table.length),
+                    cell1 = newRow.insertCell(0),
+                    cell2 = newRow.insertCell(1),
+                    cell3 = newRow.insertCell(2),
+					cell4 = newRow.insertCell(3),
+					cell5 = newRow.insertCell(4),
+					cell6 = newRow.insertCell(5),
+					cell7 = newRow.insertCell(6),
+                    id = document.getElementById("id").value,
+                    code = document.getElementById("code").value,
+                    imageFilename = document.getElementById("imageFilename").value;
+					manufacturer = document.getElementById("manufacturer").value;
+					shortDescription = document.getElementById("shortDescription").value;
+					fullDescription = document.getElementById("fullDescription").value;
+					promo = document.getElementById("promo").value;
+            
+                cell1.innerHTML = id;
+                cell2.innerHTML = code;
+                cell3.innerHTML = imageFilename;
+				cell4.innerHTML = manufacturer;
+				cell5.innerHTML = shortDescription;
+				cell6.innerHTML = fullDescription;
+				cell7.innerHTML = Promo;
+                // call the function to set the event to the new row
+                selectedRowToInput();
+            }
+            }
+            
+            // display selected row data into input text
+            function selectedRowToInput()
+            {
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                      // get the selected row index
+                      rIndex = this.rowIndex;
+                      document.getElementById("id").value = this.cells[0].innerHTML;
+                      document.getElementById("code").value = this.cells[1].innerHTML;
+					  document.getElementById("imageFilename").value = this.cells[2].innerHTML;
+					  document.getElementById("manufacturer").value = this.cells[3].innerHTML;
+					  document.getElementById("shortDescription").value = this.cells[4].innerHTML;
+					  document.getElementById("fullDescription").value = this.cells[5].innerHTML;
+					  document.getElementById("promo").value = this.cells[6].innerHTML;
+                    };
+                }
+            }
+            selectedRowToInput();
+            
+            function editHtmlTbleSelectedRow()
+            {
+                var id = document.getElementById("id").value,
+                    code = document.getElementById("code").value,
+                    imageFilename = document.getElementById("imageFilename").value;
+					manufacturer = document.getElementById("manufacturer").value;
+					shortDescription = document.getElementById("shortDescription").value;
+					fullDescription = document.getElementById("fullDescription").value;
+					promo = document.getElementById("promo").value;
+               if(!checkEmptyInput()){
+                table.rows[rIndex].cells[0].innerHTML = id;
+                table.rows[rIndex].cells[1].innerHTML = code;
+				table.rows[rIndex].cells[2].innerHTML = imageFilename;
+				table.rows[rIndex].cells[3].innerHTML = manufacturer;
+				table.rows[rIndex].cells[4].innerHTML = shortDescription;
+				table.rows[rIndex].cells[5].innerHTML = fullDescription;
+				table.rows[rIndex].cells[6].innerHTML = promo;
+              }
+            }
+            
+            function removeSelectedRow()
+            {
+                table.deleteRow(rIndex);
+                // clear input text
+                document.getElementById("id").value = "";
+                document.getElementById("code").value = "";
+				document.getElementById("imageFilename").value = "";
+				document.getElementById("manufacturer").value = "";
+				document.getElementById("shortDescription").value = "";
+				document.getElementById("fullDescription").value = "";
+				document.getElementById("promo").value = "";
+            }
+        </script>
+            <script src="JS/main.js"></script>
 
-</head>
-
-<body>
-    <header>
-
-        <logo id="logo">
-            <img src="img/logo.jpg" alt="logo">
-            <span id="ist">X</span>
-            <span id="iist">cloth.com</span>
-        </logo>
-
-
-        <nav>
-            <ul>
-                <li><a href="manufacturers.html">Manufacturers</a></li>
-                <li><a href="clothes.html">Clothes</a></li>
-                <li><a href="orders.html">Orders</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <h1>Clothes page</h1>
-
-    <table>
-
-<thead>
-    <tr>
-        <th>ID</th>
-        <th>Code</th>
-        <th>Image filename</th>
-        <th>Manufacturer</th>
-        <th>Short description</th>
-        <th>Full description</th>
-        <th>Promo</th>
-    </tr>
-</thead>
-<!----
-<tbody>
-    <tr>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-    </tr>
-</tbody>
---->
-    </table>
-
-    <script src="JS/main.js"></script>
-</body>
-
+    </body>
 </html>

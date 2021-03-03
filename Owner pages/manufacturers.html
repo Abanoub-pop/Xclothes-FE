@@ -1,65 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <title>Manufacturer page</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="CSS/template.css" rel="stylesheet" type="text/css" />
+       
+    </head>
+    <body>
+        <header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="CSS/template.css" rel="stylesheet" type="text/css" />
+            <logo id="logo">
+                <img src="img/logo.jpg" alt="logo">
+                <span id="ist">X</span>
+                <span id="iist">cloth.com</span>
+            </logo>
+    
+    
+            <nav>
+                <ul>
+                    <li><a href="manufacturers.html">Manufacturers</a></li>
+                    <li><a href="clothes.html">Clothes</a></li>
+                    <li><a href="orders.html">Orders</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <h1>Manufacturers data</h1>
+    
+        <div class="container">
+            <div class="tab tab-1">
+                ID <input type="number" name="id" id="id">
+                Name <input type="text" name="name" id="name">
+                Country <input type="text" name="country" id="country">
+				Photo link 1 <input type="text" name="photoLink1" id="photoLink1">
+				Photo link 2 <input type="text" name="photoLink2" id="photoLink2">
+				Short description <input type="text" name="shortDescription" id="shortDescription">
+				Full description <input type="text" name="fullDescription" id="fullDescription">
+                
+                <button onclick="addHtmlTableRow();">Add</button>
+                <button onclick="editHtmlTbleSelectedRow();">Edit</button>
+                <button onclick="removeSelectedRow();">Remove</button>
+            </div>
+            <div class="tab tab-2">
+                <table id="table" border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>Photo link 1</th>
+                        <th>Photo link 2</th>
+                        <th>Short description</th>
+                        <th>Full description</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>A1</td>
+                        <td>B1</td>
+                        <td>C1</td>
+                        <td>D1</td>
+                        <td>E1</td>
+                        <td>F1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>A2</td>
+                        <td>B2</td>
+                        <td>C2</td>
+                        <td>D2</td>
+                        <td>E2</td>
+                        <td>F2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>A3</td>
+                        <td>B3</td>
+                        <td>C3</td>
+                        <td>D3</td>
+                        <td>E3</td>
+                        <td>F3</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <script>
+            
+            var rIndex,
+            table = document.getElementById("table");
+            
+            // check the empty input
+            function checkEmptyInput()
+            {
+                var isEmpty = false,
+                id = document.getElementById("id").value;
+                name = document.getElementById("name").value;
+                country = document.getElementById("country").value;
+                photoLink1 = document.getElementById("photoLink1").value;
+                photoLink2 = document.getElementById("photoLink2").value;
+                shortDescription = document.getElementById("shortDescription").value;
+                fullDescription = document.getElementById("fullDescription").value;
+                
+                if(id === ""){
+                    alert("ID Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(name === ""){
+                    alert("Name Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(country === ""){
+                    alert("Country Connot Be Empty");
+                    isEmpty = true;
+                }
+				else if(photoLink1 === ""){
+                    alert("Photo link 1 Connot Be Empty");
+                    isEmpty = true;
+                }
+				else if(photoLink2 === ""){
+                    alert("Photo link 2 Connot Be Empty");
+                    isEmpty = true;
+                }
+				else if(shortDescription === ""){
+                    alert("Short description Connot Be Empty");
+                    isEmpty = true;
+                }
+				else if(fullDescription === ""){
+                    alert("Full description Connot Be Empty");
+                    isEmpty = true;
+                }
+                return isEmpty;
+            }
+            
+            // add Row
+            function addHtmlTableRow()
+            {
+                // get the table by id
+                // create a new row and cells
+                // get value from input text
+                // set the values into row cell's
+                if(!checkEmptyInput()){
+                var newRow = table.insertRow(table.length),
+                cell1 = newRow.insertCell(0),
+                cell2 = newRow.insertCell(1),
+                    cell3 = newRow.insertCell(2),
+					cell4 = newRow.insertCell(3),
+					cell5 = newRow.insertCell(4),
+					cell6 = newRow.insertCell(5),
+					cell7 = newRow.insertCell(6),
+                    id = document.getElementById("id").value,
+                    name = document.getElementById("name").value,
+                    country = document.getElementById("country").value;
+					photoLink1 = document.getElementById("photoLink1").value;
+					photoLink2 = document.getElementById("photoLink2").value;
+					shortDescription = document.getElementById("shortDescription").value;
+					fullDescription = document.getElementById("fullDescription").value;
+                    
+                    cell1.innerHTML = id;
+                    cell2.innerHTML = name;
+                    cell3.innerHTML = country;
+                    cell4.innerHTML = photoLink1;
+                    cell5.innerHTML = photoLink2;
+                    cell6.innerHTML = shortDescription;
+                    cell7.innerHTML = fullDescription;
+                    // call the function to set the event to the new row
+                selectedRowToInput();
+            }
+        }
+            
+        // display selected row data into input text
+        function selectedRowToInput()
+        {
+            
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                      // get the selected row index
+                      rIndex = this.rowIndex;
+                      document.getElementById("id").value = this.cells[0].innerHTML;
+                      document.getElementById("name").value = this.cells[1].innerHTML;
+                      document.getElementById("country").value = this.cells[2].innerHTML;
+					  document.getElementById("photoLink1").value = this.cells[3].innerHTML;
+					  document.getElementById("photoLink2").value = this.cells[4].innerHTML;
+					  document.getElementById("shortDescription").value = this.cells[5].innerHTML;
+					  document.getElementById("fullDescription").value = this.cells[6].innerHTML;
+                    };
+                }
+            }
+            selectedRowToInput();
+            
+            function editHtmlTbleSelectedRow()
+            {
+                var id = document.getElementById("id").value,
+                    name = document.getElementById("name").value,
+                    country = document.getElementById("country").value;
+					photoLink1 = document.getElementById("photoLink1").value;
+					photoLink2 = document.getElementById("photoLink2").value;
+					shortDescription = document.getElementById("shortDescription").value;
+					fullDescription = document.getElementById("fullDescription").value;
+               if(!checkEmptyInput()){
+                table.rows[rIndex].cells[0].innerHTML = id;
+                table.rows[rIndex].cells[1].innerHTML = name;
+                table.rows[rIndex].cells[2].innerHTML = country;
+				table.rows[rIndex].cells[3].innerHTML = photoLink1;
+				table.rows[rIndex].cells[4].innerHTML = photoLink2;
+				table.rows[rIndex].cells[5].innerHTML = shortDescription;
+				table.rows[rIndex].cells[6].innerHTML = fullDescription;
+              }
+            }
+            
+            function removeSelectedRow()
+            {
+                table.deleteRow(rIndex);
+                // clear input text
+                document.getElementById("id").value = "";
+                document.getElementById("name").value = "";
+                document.getElementById("country").value = "";
+				document.getElementById("photoLink1").value = "";
+				document.getElementById("photoLink2").value = "";
+				document.getElementById("shortDescription").value = "";
+				document.getElementById("fullDescription").value = "";
+            }
+        </script>
+            <script src="JS/main.js"></script>
 
-</head>
-
-<body>
-
-    <header>
-
-        <logo id="logo">
-            <img src="img/logo.jpg" alt="logo">
-            <span id="ist">X</span>
-            <span id="iist">cloth.com</span>
-        </logo>
-
-        <nav>
-            <ul>
-                <li><a href="manufacturers.html">Manufacturers</a></li>
-                <li><a href="clothes.html">Clothes</a></li>
-                <li><a href="orders.html">Orders</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <h1>Manufacturers page</h1>
-
-    <table>
-
-<thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Country</th>
-        <th>Photo link 1</th>
-        <th>Photo link 2</th>
-        <th>Short description</th>
-        <th>Full description</th>
-    </tr>
-</thead>
-<!----
-<tbody>
-    <tr>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-    </tr>
-</tbody>
---->
-    </table>
-
-    <script src="JS/main.js"></script>
-</body>
-
+    </body>
 </html>
+
+
+
